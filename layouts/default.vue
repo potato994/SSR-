@@ -1,8 +1,22 @@
 <template>
   <div>
+    <Header />
+    <!-- 内容的占位符 -->
     <nuxt />
+    <Footer />
   </div>
 </template>
+
+<script>
+import Header from '@/components/header'
+import Footer from '@/components/footer'
+export default {
+  components:{
+    Header,
+    Footer
+  }
+}
+</script>
 
 <style>
 html {
