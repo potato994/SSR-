@@ -18,9 +18,9 @@
       <div class="msg">
         <el-dropdown>
           <span class="el-dropdown-link">
-            <i class=" el-icon-message"></i>
+            <i class="el-icon-message"></i>
             消息
-            <i class=" el-icon-caret-bottom"></i>
+            <i class="el-icon-caret-bottom"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>消息</el-dropdown-item>
@@ -28,20 +28,23 @@
         </el-dropdown>
       </div>
       <!-- 右侧的登录注册 -->
-      <div class="denglu">
+      <div class="denglu" v-if="!$store.state.user.userInfo.token">
         <nuxt-link to="/user/login">登录/注册</nuxt-link>
       </div>
 
-      <div class="login" v-if="false">
+      <div class="login" v-else>
         <el-dropdown>
           <span class="el-dropdown-link">
-            <img src="http://157.122.54.189:9095/assets/images/avatar.jpg" alt />
-            potato
-            <i class="el-icon-arrow-down el-icon-caret-bottom"></i>
+            <img :src="$axios.defaults.baseURL+$store.state.user.userInfo.user.defaultAvatar" alt />
+            {{$store.state.user.userInfo.user.username}}
+            <i
+              class="el-icon-arrow-down el-icon-caret-bottom"
+            ></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item>退出</el-dropdown-item>
+            <!-- Vue组件绑定事件的时候，一定要加上native，不然不会生效 -->
+            <el-dropdown-item @click.native="handleLogout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -50,6 +53,13 @@
 </template>
  
 <script>
+export default {
+  methods: {
+    handleLogout() {
+      this.$store.commit('user/clearInfo')
+    }
+  }
+};
 </script>
  
 <style lang='less' scoped>
