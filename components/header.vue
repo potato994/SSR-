@@ -36,7 +36,7 @@
         <el-dropdown>
           <span class="el-dropdown-link">
             <img :src="$axios.defaults.baseURL+$store.state.user.userInfo.user.defaultAvatar" alt />
-            {{$store.state.user.userInfo.user.username}}
+            {{$store.state.user.userInfo.user.nickname}}
             <i
               class="el-icon-arrow-down el-icon-caret-bottom"
             ></i>
@@ -93,6 +93,9 @@ export default {
   .nuxt-link-exact-active {
     background-color: #409eff;
     color: #fff;
+    &:hover{
+      color: #fff;
+    }
   }
 }
 

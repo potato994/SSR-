@@ -35,5 +35,19 @@ export const actions = {
                 store.commit('setUserInfo', res.data)
 
             })
+    },
+    // 获取手机验证码
+    sendCode(store,phoneNum){
+       return this.$axios({
+            url: "/captchas",
+            method: "POST",
+            data: {
+              tel: phoneNum
+            }
+          }).then(res=>{
+              console.log(res);
+              const {code} = res.data
+              return code
+          })
     }
 }

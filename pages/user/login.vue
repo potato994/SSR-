@@ -12,6 +12,7 @@
           >{{item}}</span>
         </el-row>
         <loginForm v-if="current===0"/>
+        <Register v-if="current===1"/>
       </div>
     </el-row>
   </div>
@@ -19,9 +20,11 @@
 
 <script>
 import loginForm from "@/components/user/loginForm";
+import Register from "@/components/user/register";
 export default {
   components: {
-    loginForm
+    loginForm,
+    Register
   },
   data() {
     return {
