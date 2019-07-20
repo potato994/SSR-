@@ -163,7 +163,7 @@ export default {
       let valid = true;
       console.log(rules);
       console.log(Object.keys(rules));
-      Object.keys(rule).map(v => {
+      Object.keys(rules).map(v => {
         if (!valid) return;
         //    如果字段值为空
         if (!rules[v].value) {
@@ -177,6 +177,19 @@ export default {
               query:this.form
           })
       }
+
+       // 添加到本地存储
+      const airs = JSON.parse(localStorage.getItem('airs') || `[]`);
+      airs.unshift(this.form)
+      if(airs.length>5){
+        airs.length = 5 ;
+      }
+      localStorage.setItem('airs',JSON.stringify(airs));
+
+      // this.$router.push({
+      //   path:'/air/flights',
+      //   query:this.form
+      // })
     }
   }
 };

@@ -43,7 +43,8 @@ export default {
                         type:'success'
                     });
                     setTimeout(() => {
-                        this.$router.push('/')
+                        // this.$router.push('/')
+                        this.$router.back()
                     }, 1000);
                     console.log(res);
                 })

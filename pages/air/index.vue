@@ -44,11 +44,11 @@
     <div class="air-sale">
       <el-row class="air-sale-pic" type="flex" justify="space-between">
         <el-col :span="6" v-for="(item,index) in sales" :key="index" class="elcol">
-          <nuxt-link to="#">
+          <nuxt-link :to="`/air/flights?departCity=${item.departCity}&departCode=${item.departCode}&destCity=${item.destCity}&destCode=${item.destCode}&departDate=${item.departDate}`">
             <img :src="item.cover" />
             <el-row type="flex" justify="space-between" class="layer-bar">
               <span>{{item.departCity}}-{{item.destCity}}</span>
-              <span>￥{{item.price}}</span>
+              <span>￥{{Number(item.price).toFixed(2)}}</span>
             </el-row>
           </nuxt-link>
         </el-col>
@@ -65,15 +65,7 @@ export default {
   },
   data() {
     return {
-      sales: {
-        cover: "",
-        departCity: "",
-        departCode: "",
-        destCity: "",
-        destCode: "",
-        departDate: "",
-        price: ""
-      }
+      sales:[]
     };
   },
   mounted() {
@@ -82,7 +74,8 @@ export default {
       method: "GET"
     }).then(res => {
       console.log(res);
-      this.sales = res.data.data;
+      const {data} = res.data
+      this.sales = data;
     });
   }
 };
